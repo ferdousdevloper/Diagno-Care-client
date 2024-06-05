@@ -1,9 +1,9 @@
-import { Link, useParams } from "react-router-dom";
-import useAxiosPublic from "./../../hooks/useAxiosPublic";
+import { useParams } from "react-router-dom";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
 import Loader from "../Loader/Loader";
 
-const TestDetails = () => {
+const BookNow = () => {
   const { id } = useParams();
   const axiosPublic = useAxiosPublic();
 
@@ -17,13 +17,12 @@ const TestDetails = () => {
   if (isLoading) return <Loader></Loader>;
   console.log(tests);
   return (
-    <div className="py-40">
-      <div className="container mx-auto">
-        <h1 className="text-6xl fontBebas font-extrabold text-center">
-          TEST DETAILS
-        </h1>
-        <div className="hero py-20 px-20 bg-base-200">
-          <div className="flex flex-col lg:flex-row gap-10">
+    <div className="container mx-auto py-40">
+      <h1 className="text-6xl fontBebas font-extrabold text-center">
+        TEST APPOINTMENT
+      </h1>
+      <div className="hero py-20 px-20 bg-base-200">
+          <div className="flex flex-col lg:flex-row-reverse gap-10">
             <div>
               <img src={tests.image} className="rounded-lg shadow-2xl" />
             </div>
@@ -32,14 +31,13 @@ const TestDetails = () => {
               <p className="py-6">{tests.shortDescription}</p>
               <p>Date: {tests.date}</p>
               <p className="py-6">Available slots: {tests.slots}</p>
-              <Link to={`/bookNow/${tests._id}`}><button className="btn btn-primary">Book Now</button></Link>
+              {/* <Link to={`/bookNow/${tests._id}`}><button className="btn btn-primary">Book Now</button></Link> */}
               
             </div>
           </div>
         </div>
-      </div>
     </div>
   );
 };
 
-export default TestDetails;
+export default BookNow;

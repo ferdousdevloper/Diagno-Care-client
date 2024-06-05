@@ -22,6 +22,7 @@ import PrivateRoute from "./PrivateRoute";
 import AdminRoute from './AdminRoute';
 import UpdateProfile from "../Pages/Dashboard/UpdateProfile";
 import TestUpdate from "../Pages/Dashboard/TestUpdate";
+import BookNow from "../components/BookNow/BookNow";
 
 export const router = createBrowserRouter([
   {
@@ -48,6 +49,10 @@ export const router = createBrowserRouter([
       {
         path: "/allTests/:id",
         element: <TestDetails></TestDetails>,
+      },
+      {
+        path: "/bookNow/:id",
+        element: <PrivateRoute><BookNow></BookNow></PrivateRoute>,
       },
     ],
   },

@@ -7,7 +7,7 @@ import "react-datepicker/dist/react-datepicker.css";
 //import { useState } from "react";
 
 const TestUpdate = () => {
-  const { date, _id, shortDescription, slots, title } = useLoaderData();
+  const { date, report, _id, shortDescription, slots, title } = useLoaderData();
   const navigate = useNavigate();
   const { register, handleSubmit } = useForm();
   const axiosSecure = useAxiosSecure();
@@ -18,6 +18,7 @@ const TestUpdate = () => {
       title: data.title,
       shortDescription: data.shortDescription,
       date: data.date,
+      report: data.report,
       slots: parseFloat(data.slots),
 
       // image: data.image,
@@ -90,6 +91,20 @@ const TestUpdate = () => {
               />
             </div>
           </div>
+          <div className="form-control w-full my-6">
+            <label className="label">
+              <span className="label-text">Default Report Status</span>
+            </label>
+            <input
+              type="text"
+              placeholder="Report"
+              defaultValue="pending"
+              readOnly
+              {...register("report", { required: true })}
+              required
+              className="input input-bordered w-full"
+            />
+            </div>
           {/* Description */}
           <div className="form-control">
             <label className="label">

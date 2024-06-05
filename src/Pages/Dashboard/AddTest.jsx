@@ -29,6 +29,7 @@ const AddTest = () => {
         title: data.title,
         shortDescription: data.shortDescription,
         date: data.date,
+        report: data.report,
         slots: parseFloat(data.slots,),
         image: res.data.data.display_url,
       };
@@ -93,13 +94,33 @@ const AddTest = () => {
             </div>
             
           </div>
+          <div className="md:flex gap-6 items-center">
           <div className="form-control w-full my-6">
+          <label className="label">
+              <span className="label-text">Thumbnail</span>
+            </label>
               <input
                 {...register("image", { required: true })}
                 type="file"
                 className="file-input w-full max-w-3xl bg-colorPrimary text-white"
               />
             </div>
+            <div className="form-control w-full my-6">
+            <label className="label">
+              <span className="label-text">Default Report Status</span>
+            </label>
+            <input
+              type="text"
+              placeholder="Report"
+              defaultValue="pending"
+              readOnly
+              {...register("report", { required: true })}
+              required
+              className="input input-bordered w-full"
+            />
+          </div>
+          </div>
+          
           {/* Description */}
           <div className="form-control">
             <label className="label">

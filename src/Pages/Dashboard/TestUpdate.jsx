@@ -7,7 +7,7 @@ import "react-datepicker/dist/react-datepicker.css";
 //import { useState } from "react";
 
 const TestUpdate = () => {
-  const { date, report, _id, shortDescription, slots, title } = useLoaderData();
+  const { date, _id, shortDescription, slots, title, price } = useLoaderData();
   const navigate = useNavigate();
   const { register, handleSubmit } = useForm();
   const axiosSecure = useAxiosSecure();
@@ -20,6 +20,7 @@ const TestUpdate = () => {
       date: data.date,
       report: data.report,
       slots: parseFloat(data.slots),
+      price: parseFloat(data.price),
 
       // image: data.image,
     };
@@ -79,6 +80,17 @@ const TestUpdate = () => {
               />
             </div>
             {/* Coupon Code */}
+            <div className="form-control w-full my-6">
+              <label className="label">
+                <span className="label-text">Price</span>
+              </label>
+              <input
+                type="number"
+                defaultValue={price}
+                {...register("price", { required: true })}
+                className="input input-bordered w-full"
+              />
+            </div>
             <div className="form-control w-full my-6">
               <label className="label">
                 <span className="label-text">Slots</span>

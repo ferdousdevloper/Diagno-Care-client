@@ -23,6 +23,7 @@ import AdminRoute from './AdminRoute';
 import UpdateProfile from "../Pages/Dashboard/UpdateProfile";
 import TestUpdate from "../Pages/Dashboard/TestUpdate";
 import BookNow from "../components/BookNow/BookNow";
+import MakeReport from "../Pages/Dashboard/MakeReport";
 
 export const router = createBrowserRouter([
   {
@@ -92,6 +93,12 @@ export const router = createBrowserRouter([
       {
         path: "/dashboard/reservation",
         element: <AdminRoute><Reservation></Reservation></AdminRoute> ,
+      },
+      {
+        path: "/dashboard/reservation/:_id",
+        element: <AdminRoute><MakeReport></MakeReport></AdminRoute> ,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/appointments/${params._id}`),
       },
       {
         path: "/dashboard/addBanner",

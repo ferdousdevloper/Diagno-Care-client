@@ -30,6 +30,7 @@ const AddTest = () => {
         shortDescription: data.shortDescription,
         date: data.date,
         report: data.report,
+        price: parseFloat(data.price,),
         slots: parseFloat(data.slots,),
         image: res.data.data.display_url,
       };
@@ -74,13 +75,24 @@ const AddTest = () => {
             {/* Discount */}
             <div className="form-control w-full my-6">
                <label className="block mb-2 " htmlFor="deadline">
-                 Select Deadline
+                 Select Date
                </label>
                <input 
                type="date"
                  {...register("date", { required: true })}
                  className="input input-bordered w-full" />
              </div>
+             <div className="form-control w-full my-6">
+              <label className="label">
+                <span className="label-text">Price</span>
+              </label>
+              <input
+                type="number"
+                {...register("price", { required: true })}
+                placeholder="Price $$$"
+                className="input input-bordered w-full"
+              />
+            </div>
             {/* Coupon Code */}
             <div className="form-control w-full my-6">
               <label className="label">

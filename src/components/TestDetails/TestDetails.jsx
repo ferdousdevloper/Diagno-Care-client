@@ -5,8 +5,10 @@ import Loader from "../Loader/Loader";
 import { useForm } from "react-hook-form";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import useAuth from "../../hooks/useAuth";
 
 const TestDetails = () => {
+  const {user, loading} = useAuth();
   const { register, handleSubmit, reset } = useForm();
   const navigate = useNavigate();
   const { id } = useParams();
@@ -14,6 +16,15 @@ const TestDetails = () => {
   const axiosSecure = useAxiosSecure();
 
   
+  const { data: userInfo = {} } = useQuery({
+    queryKey: ["userInfo", user?.email],
+    enabled: !loading && !!user?.email,
+    queryFn: async () => {
+      const { data } = await axiosSecure.get(`/users/${user?.email}`);
+      return data;
+    },
+  });
+  console.log(userInfo);
 
   const { data: tests = {}, isLoading, refetch } = useQuery({
     queryKey: ["tests", id],
@@ -23,6 +34,7 @@ const TestDetails = () => {
     },
   });
   if (isLoading) return <Loader></Loader>;
+ 
   const onSubmit = async (data) => {
     console.log(data);
     // image upload to imgbb and then get an url
@@ -37,6 +49,13 @@ const TestDetails = () => {
       date: data.date,
       report: data.report,
       slots: parseFloat(data.slots),
+      price: parseFloat(data.price),
+      name: data.name,
+      avatar: data.avatar,
+      email: data.email,
+      bloodGroup: data.bloodGroup,
+      district: data.district,
+      upazila: data.upazila
       //image: res.data.data.display_url,
     };
 
@@ -103,7 +122,7 @@ const TestDetails = () => {
                     readOnly
                     {...register("title", { required: true })}
                     required
-                    className="w-full text-5xl font-bold focus:outline-none bg-transparent"
+                    className="w-full text-3xl font-bold focus:outline-none bg-transparent"
                   />
                 </div>
                 <div className="form-control w-full my-6">
@@ -136,12 +155,82 @@ const TestDetails = () => {
                     className="w-full focus:outline-none bg-transparent"
                   />
                 </div>
+                <div className="form-control my-6 focus:outline-none bg-transparent mt-1 mb-4 mr-1 text-2xl font-bold"><p>$ 
+                  <input
+                    type="number"
+                    defaultValue={tests.price}
+                    readOnly
+                    {...register("price", { required: true })}
+                    required
+                    className="focus:outline-none bg-transparent mt-1 mb-4 ml-1 text-2xl font-bold"
+                  /></p>
+                </div>
                 <div className="form-control w-full my-6 hidden">
                   <input
                     type="text"
                     defaultValue={tests.report}
                     readOnly
                     {...register("report", { required: true })}
+                    required
+                    className="w-full focus:outline-none bg-transparent"
+                  />
+                </div>
+                <div className="form-control w-full my-6 hidden">
+                  <input
+                    type="text"
+                    defaultValue={userInfo.name}
+                    readOnly
+                    {...register("name", { required: true })}
+                    required
+                    className="w-full focus:outline-none bg-transparent"
+                  />
+                </div>
+                <div className="form-control w-full my-6 hidden">
+                  <input
+                    type="text"
+                    defaultValue={userInfo.avatar}
+                    readOnly
+                    {...register("avatar", { required: true })}
+                    required
+                    className="w-full focus:outline-none bg-transparent"
+                  />
+                </div>
+                <div className="form-control w-full my-6 hidden">
+                  <input
+                    type="text"
+                    defaultValue={userInfo.email}
+                    readOnly
+                    {...register("email", { required: true })}
+                    required
+                    className="w-full focus:outline-none bg-transparent"
+                  />
+                </div>
+                <div className="form-control w-full my-6 hidden">
+                  <input
+                    type="text"
+                    defaultValue={userInfo.bloodGroup}
+                    readOnly
+                    {...register("bloodGroup", { required: true })}
+                    required
+                    className="w-full focus:outline-none bg-transparent"
+                  />
+                </div>
+                <div className="form-control w-full my-6 hidden">
+                  <input
+                    type="text"
+                    defaultValue={userInfo.district}
+                    readOnly
+                    {...register("district", { required: true })}
+                    required
+                    className="w-full focus:outline-none bg-transparent"
+                  />
+                </div>
+                <div className="form-control w-full my-6 hidden">
+                  <input
+                    type="text"
+                    defaultValue={userInfo.upazila}
+                    readOnly
+                    {...register("upazila", { required: true })}
                     required
                     className="w-full focus:outline-none bg-transparent"
                   />

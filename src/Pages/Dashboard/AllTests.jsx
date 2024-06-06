@@ -48,9 +48,11 @@ const AllTests = () => {
             <tr>
               <th>Images</th>
               <th>Info</th>
+              <th>Price</th>
               <th>Reservation</th>
               <th>Available Slots</th>
               <th>Update</th>
+              <th>Delete</th>
             </tr>
           </thead>
           <tbody>
@@ -79,6 +81,7 @@ const AllTests = () => {
                       </span>
                     </div>
                   </td>
+                  <td className="font-bold">Price: ${i?.price}</td>
                   <td className="font-bold">Reservation:</td>
                   <td className="font-bold">Slots: {i.slots}</td>
                   <th>

@@ -6,6 +6,7 @@ import { RiAddLargeFill } from "react-icons/ri";
 import { Link, NavLink, Outlet } from "react-router-dom";
 import useAdmin from "../hooks/useAdmin";
 import { IoIosPaper } from "react-icons/io";
+import { Toaster } from "react-hot-toast";
 
 const Dashboard = () => {
   const [isAdmin] = useAdmin();
@@ -102,6 +103,7 @@ const Dashboard = () => {
       {/* dashboard content */}
       <div className="flex-1 p-8">
         <Outlet></Outlet>
+        <Toaster></Toaster>
       </div>
     </div>
   );

@@ -3,6 +3,7 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
 import { useState } from "react";
+import toast from "react-hot-toast";
 //import useAuth from "../../hooks/useAuth";
 //import Loader from "../../components/Loader/Loader";
 
@@ -17,28 +18,63 @@ const AllUsers = () => {
   });
 
   const handleMakeAdmin = (user) => {
-    axiosSecure.patch(`/user/admin/${user._id}`).then((res) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "Make Admin??",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, Make Admin!!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosSecure.patch(`/user/admin/${user._id}`).then((res) => {
+          console.log(res.data);
+          if (res.data.modifiedCount > 0) {
+            refetch();
+            Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: `${user.name} is an Admin Now!`,
+              showConfirmButton: false,
+              timer: 1500,
+            });
+          }
+        });
+      }
+    })
+      
+  }
+  const handleMakeBlock = (user) => {
+    axiosSecure.patch(`/user/block/${user._id}`).then((res) => {
       console.log(res.data);
       if (res.data.modifiedCount > 0) {
         refetch();
-        Swal.fire({
-          position: "top-end",
-          icon: "success",
-          title: `${user.name} is an Admin Now!`,
-          showConfirmButton: false,
-          timer: 1500,
-        });
+        toast.success('Successfully user Blocked')
+        
+      }
+    });
+  };
+  const handleMakeActive = (user) => {
+    axiosSecure.patch(`/user/active/${user._id}`).then((res) => {
+      console.log(res.data);
+      if (res.data.modifiedCount > 0) {
+        refetch();
+        toast.success('Successfully user Active')
+        // Swal.fire({
+        //   position: "top-end",
+        //   icon: "success",
+        //   title: `${user.name} is an Admin Now!`,
+        //   showConfirmButton: false,
+        //   timer: 1500,
+        // });
       }
     });
   };
 
+  //   const handleInfo=(info)=>{
 
-  
-//   const handleInfo=(info)=>{
-    
-
-
-//   }
+  //   }
 
   const handleDeleteUser = (user) => {
     Swal.fire({
@@ -65,7 +101,7 @@ const AllUsers = () => {
     });
   };
 
-  const [selectedData, setSelectedData] = useState(null)
+  const [selectedData, setSelectedData] = useState(null);
   return (
     <div>
       <h1>All Users</h1>
@@ -81,6 +117,7 @@ const AllUsers = () => {
               <th></th>
               <th>Name</th>
               <th>Email</th>
+              <th>Status</th>
               <th>Role</th>
               <th>User Info</th>
               <th>Action</th>
@@ -92,6 +129,19 @@ const AllUsers = () => {
                 <th>{index + 1}</th>
                 <td>{user.name}</td>
                 <td>{user.email}</td>
+                <td>{user.status === "active" ? (
+                    <button
+                    onClick={() => handleMakeBlock(user)}
+                    className="btn btn-sm bg-green-500 text-white"
+                  >Active
+                  </button>
+                  ) : (
+                    <button
+                      onClick={() => handleMakeActive(user)}
+                      className="btn btn-sm bg-red-500 text-white"
+                    >Block
+                    </button>
+                  )}</td>
                 <td>
                   {user.role === "admin" ? (
                     "Admin"
@@ -109,35 +159,58 @@ const AllUsers = () => {
                 </td>
                 <td>
                   {/* The button to open modal */}
-                  <label htmlFor="my_modal_6" onClick={() => setSelectedData(user)} className="btn btn-ghost btn-sm bg-colorPrimary text-white">
+                  <label
+                    htmlFor="my_modal_6"
+                    onClick={() => setSelectedData(user)}
+                    className="btn btn-ghost btn-sm bg-colorPrimary text-white"
+                  >
                     See Info
                   </label>
 
                   {/* Put this part before </body> tag */}
-                  {selectedData &&( <><input
-                            type="checkbox"
-                            id="my_modal_6"
-                            className="modal-toggle " /><div className="modal" role="dialog">
-                                
-                                <div className="modal-box bg-colorPrimary">
-                                <div className="flex items-center justify-center">
-                                    <img className="max-w-96 rounded-3xl" src={selectedData.avatar} alt="" />
-                                </div>
-                                    <h3 className="text-xl font-medium tracking-tight text-white mt-6">Name: {selectedData.name}</h3>
-                                    <p className="text-blue-200 mt-4"> Email: {selectedData.email}
-                                    </p>
-                                    <p className="text-blue-200 mt-4">Blood Group: {selectedData.bloodGroup}
-                                    </p>
-                                    <p className="text-blue-200 mt-4">Address: {selectedData?.district}, {selectedData?.upazila}.</p>
+                  {selectedData && (
+                    <>
+                      <input
+                        type="checkbox"
+                        id="my_modal_6"
+                        className="modal-toggle "
+                      />
+                      <div className="modal" role="dialog">
+                        <div className="modal-box bg-colorPrimary">
+                          <div className="flex items-center justify-center">
+                            <img
+                              className="max-w-96 rounded-3xl"
+                              src={selectedData.avatar}
+                              alt=""
+                            />
+                          </div>
+                          <h3 className="text-xl font-medium tracking-tight text-white mt-6">
+                            Name: {selectedData.name}
+                          </h3>
+                          <p className="text-blue-200 mt-4">
+                            {" "}
+                            Email: {selectedData.email}
+                          </p>
+                          <p className="text-blue-200 mt-4">
+                            Blood Group: {selectedData.bloodGroup}
+                          </p>
+                          <p className="text-blue-200 mt-4">
+                            Address: {selectedData?.district},{" "}
+                            {selectedData?.upazila}.
+                          </p>
 
-                                    <div className="modal-action">
-                                        <label htmlFor="my_modal_6" className="btn my-6 bg-[#2c8ac9] text-white hover:bg-black">
-                                            Close!
-                                        </label>
-                                    </div>
-                                </div>
-                            </div></> )}
-                  
+                          <div className="modal-action">
+                            <label
+                              htmlFor="my_modal_6"
+                              className="btn my-6 bg-[#2c8ac9] text-white hover:bg-black"
+                            >
+                              Close!
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                    </>
+                  )}
                 </td>
                 <td>
                   <button

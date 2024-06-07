@@ -6,8 +6,10 @@ import { useForm } from "react-hook-form";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
+import useUser from "../../hooks/useUser";
 
 const TestDetails = () => {
+  const [isBlock] = useUser()
   const {user, loading} = useAuth();
   const { register, handleSubmit, reset } = useForm();
   const navigate = useNavigate();
@@ -235,7 +237,8 @@ const TestDetails = () => {
                     className="w-full focus:outline-none bg-transparent"
                   />
                 </div>
-                <button className="btn btn-primary">Book Now</button>
+                {isBlock?(<h1 className="btn btn-error text-white font-bold">Youre Blocked By Admin</h1>):(<button className="btn btn-primary">Book Now</button>)}
+                
               </form>
 
               {/* <Link to={`/bookNow/${tests._id}`}></Link> */}

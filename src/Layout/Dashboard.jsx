@@ -7,9 +7,11 @@ import { Link, NavLink, Outlet } from "react-router-dom";
 import useAdmin from "../hooks/useAdmin";
 import { IoIosPaper } from "react-icons/io";
 import { Toaster } from "react-hot-toast";
+import useUser from "../hooks/useUser";
 
 const Dashboard = () => {
   const [isAdmin] = useAdmin();
+  const [isBlock] = useUser()
 
   return (
     <div className="flex">
@@ -67,21 +69,21 @@ const Dashboard = () => {
                 </NavLink>
               </li>
             </>
-          ) : (
-            <>
-              <li>
-                <NavLink to="/dashboard/myAppointments">
-                  <IoIosPaper />
-                  Upcoming Appointments
-                </NavLink>
-              </li>
-              <li>
-                <NavLink to="/dashboard/testResult">
-                  <GrTest />
-                  Test Result
-                </NavLink>
-              </li>
-            </>
+          ) : (<>{isBlock? (<><h1 className="text-4xl">Youre Blocked by admin</h1></>):(<>
+            <li>
+              <NavLink to="/dashboard/myAppointments">
+                <IoIosPaper />
+                Upcoming Appointments
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="/dashboard/testResult">
+                <GrTest />
+                Test Result
+              </NavLink>
+            </li>
+          </>)}</>
+            
           )}
 
           {/* shared nav links */}

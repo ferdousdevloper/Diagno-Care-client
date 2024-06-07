@@ -1,13 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
-import { useForm } from "react-hook-form";
+//import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 //import Reservation from './Reservation';
 
 const Reservation = () => {
   const axiosSecure = useAxiosSecure();
-  const { register, handleSubmit } = useForm();
+  //const { register, handleSubmit } = useForm();
 
   const { refetch, data: appointment = [] } = useQuery({
     queryKey: ["reserve"],
@@ -20,6 +20,7 @@ const Reservation = () => {
   //const { _id } = appointment;
   console.log(appointment)
   //for report delivered
+  /*
   const handleMakeDelivered = (i) => {
     const reportStatus ={
       report: i.report.report,
@@ -38,6 +39,7 @@ const Reservation = () => {
       }
     });
   };
+  */
 
   const handleDeleteItem = (item) => {
     Swal.fire({
@@ -101,7 +103,7 @@ const Reservation = () => {
                   ) : (
                     <Link to={`/dashboard/reservation/${i._id}`}>
                       <button
-                      onClick={() => handleMakeDelivered(i)}
+                     // onClick={() => handleMakeDelivered(i)}
                       className="btn btn-sm bg-colorPrimary"
                     >
                       <p className="text-white">Make Test Report</p>

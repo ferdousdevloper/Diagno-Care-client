@@ -3,7 +3,14 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 //import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
+import jsPDF from 'jspdf';
+
+import { useRef } from "react";
+import html2canvas from "html2canvas";
 //import Reservation from './Reservation';
+//------------------------------------------------------------------
+
+//----------------------------------------------------------------
 
 const Reservation = () => {
   const axiosSecure = useAxiosSecure();
@@ -18,7 +25,7 @@ const Reservation = () => {
   });
 
   //const { _id } = appointment;
-  console.log(appointment)
+  console.log(appointment);
   //for report delivered
   /*
   const handleMakeDelivered = (i) => {
@@ -69,6 +76,27 @@ const Reservation = () => {
       }
     });
   };
+
+  //-------------------------------------------------------------
+
+  // const callBothFunctions = (i) =>{
+  //   generatePdf(i)
+  // }
+
+
+  const generatePdf = (i) => {
+
+      
+     console.log(i.title);
+     const doc = new jsPDF();
+     doc.text("Test Title: "+ i.title, 10, 10);
+     doc.text("Test Title: "+ i.title, 10, 20);
+
+
+
+
+     doc.save('demo.pdf');
+  };
   return (
     <div>
       <h1>Reservation{appointment.length}</h1>
@@ -96,20 +124,19 @@ const Reservation = () => {
                   </div>
                 </td>
                 <td>
-                {i.report === "delivered" ? (
+                  {i.report === "delivered" ? (
                     <p className="btn bg-green-600 text-white btn-sm ml-4">
-                    Delivered
-                  </p>
+                      Delivered
+                    </p>
                   ) : (
                     <Link to={`/dashboard/reservation/${i._id}`}>
                       <button
-                     // onClick={() => handleMakeDelivered(i)}
-                      className="btn btn-sm bg-colorPrimary"
-                    >
-                      <p className="text-white">Make Test Report</p>
-                    </button>
+                        // onClick={() => handleMakeDelivered(i)}
+                        className="btn btn-sm bg-colorPrimary"
+                      >
+                        <p className="text-white">Make Test Report</p>
+                      </button>
                     </Link>
-                    
                   )}
                 </td>
                 <td>
@@ -119,6 +146,9 @@ const Reservation = () => {
                   >
                     Cancel Reservation
                   </button>
+                </td>
+                <td>
+                <button onClick={()=> generatePdf(i)}>Generate PDF</button>
                 </td>
               </tr>
             ))}

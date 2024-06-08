@@ -1,16 +1,34 @@
-import useAdmin from "../../hooks/useAdmin";
-import useUser from "../../hooks/useUser";
+
+import jsPDF from "jspdf";
+import { useRef } from "react";
 
 const Statistics = () => {
-    const [isBlock] = useUser()
-    const [isAdmin] = useAdmin()
+  const contentRef = useRef();
+  const generatePdf = () => {
+    const doc = new jsPDF('p', 'pt', 'a4');
 
-    return (
-        <div>
-            {isAdmin? (<><h1>hello1</h1></>): (<>{isBlock?(<><h1>youre blocked</h1></>):(<><><h1>hello2</h1></></>)} </>)}
-        </div>
-        
-    );
+    doc.html(contentRef.current, {
+      callback: (doc) => {
+        doc.save('document.pdf');
+      },
+      x: 10,
+      y: 10,
+      html2canvas: { scale: 1 } // Adjust scale for better layout if needed
+    });
+  };
+
+  return (
+    <div ref={contentRef}>
+      <h1>hello</h1>
+      <p>
+        This is the body content of the PDF. Here you can include paragraphs of
+        text. Adjust the maxWidth in the doc.text options to fit your layout
+        needs. jsPDF makes it easy to create documents on the fly and customize
+        them as needed.
+      </p>
+      <button onClick={() => generatePdf()}>Generate PDF</button>
+    </div>
+  );
 };
 
 export default Statistics;

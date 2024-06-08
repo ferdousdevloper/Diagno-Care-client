@@ -4,6 +4,8 @@ import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
 import { useState } from "react";
 import toast from "react-hot-toast";
+import { useLoaderData } from "react-router-dom";
+import jsPDF from "jspdf";
 //import useAuth from "../../hooks/useAuth";
 //import Loader from "../../components/Loader/Loader";
 
@@ -42,16 +44,14 @@ const AllUsers = () => {
           }
         });
       }
-    })
-      
-  }
+    });
+  };
   const handleMakeBlock = (user) => {
     axiosSecure.patch(`/user/block/${user._id}`).then((res) => {
       console.log(res.data);
       if (res.data.modifiedCount > 0) {
         refetch();
-        toast.success('Successfully user Blocked')
-        
+        toast.success("Successfully user Blocked");
       }
     });
   };
@@ -60,7 +60,7 @@ const AllUsers = () => {
       console.log(res.data);
       if (res.data.modifiedCount > 0) {
         refetch();
-        toast.success('Successfully user Active')
+        toast.success("Successfully user Active");
         // Swal.fire({
         //   position: "top-end",
         //   icon: "success",
@@ -101,7 +101,87 @@ const AllUsers = () => {
     });
   };
 
+
+  // for pdf to get all appointments data///////////////////////////////////////////////////
+  //===========================================================================================
+
+  const appointments = useLoaderData([]);
+
+  console.log(appointments);
+
   const [selectedData, setSelectedData] = useState(null);
+  const [userSelectedData, setUserSelectedData] = useState(null);
+
+  console.log(selectedData);
+
+  const appointmentArray = Array.isArray(appointments) ? appointments : [];
+
+  const filterData = selectedData
+    ? appointmentArray.filter((item) => item.email === selectedData.email)
+    : [];
+  console.log(filterData);
+
+  const bothHandleClick = (user, filterData) => {
+    generatePdf(filterData);
+    setSelectedData(user);
+  };
+  //console.log(selectedData.name);
+  const generatePdf = (user) => {
+    
+    //console.log(filterData?.title);
+    const doc = new jsPDF();
+    // doc.text("Test Title: " + filterData?.title, 10, 10);
+    // doc.text("Test Title: " + filterData?.title, 10, 20);
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(18);
+    doc.text("DIAGNO CARE", 105, 10, null, null, "center");
+    doc.line(10, 20, 200,  20);
+    doc.setFontSize(12);
+    doc.text("Patient Name: " + selectedData?.name, 10, 40);
+    doc.text("Patient email: " + selectedData?.email, 10, 50);
+    doc.text("Blood Group: " + selectedData?.bloodGroup, 10, 60);
+    doc.text("District: " + selectedData?.district, 10, 70);
+    doc.text("Upazila: " + selectedData?.upazila, 10, 80);
+    if (selectedData?.avatar) {
+      doc.addImage(selectedData?.avatar, 'jpg', 150, 30, 50, 50); // Adjust position and size
+    }
+    doc.line(10, 90, 200,  90);
+
+    doc.text(`Total Delivered: ${filterData.length}`, 10, 100);
+    doc.setFontSize(8);
+    filterData.forEach((item, index) => {
+      const initialYPosition = 110 + index * 30;
+      let yPosition = initialYPosition;
+      const itemHeight = 60; // Estimated height needed for each item (adjust as needed)
+
+        // Check if adding this item will exceed page height
+        if (yPosition + itemHeight > doc.internal.pageSize.height - 20) {
+          doc.addPage();
+          yPosition = 20; // Reset yPosition for new page
+        }
+     
+      yPosition += 5;
+      doc.text(`Test Name: ${item.title}`, 15, yPosition);
+      yPosition += 5;
+      doc.text(`Description: ${item.shortDescription}`, 15, yPosition);
+      yPosition += 5;
+      doc.text(`Date: ${item.date}`, 15, yPosition);
+      yPosition += 5;
+      doc.text(`Price : $${item.price}`, 15, yPosition);
+      yPosition += 5;
+      doc.text(`Report Status : ${item.report}`, 15, yPosition);
+      yPosition += 5;
+      doc.line(15, yPosition, 200,  yPosition);
+      
+    });
+    
+    
+
+    doc.save("demo.pdf");
+  };
+  ////////////////////////////////////////////////////////////
+  //===========================================================
+
   return (
     <div>
       <h1>All Users</h1>
@@ -129,19 +209,23 @@ const AllUsers = () => {
                 <th>{index + 1}</th>
                 <td>{user.name}</td>
                 <td>{user.email}</td>
-                <td>{user.status === "active" ? (
+                <td>
+                  {user.status === "active" ? (
                     <button
-                    onClick={() => handleMakeBlock(user)}
-                    className="btn btn-sm bg-green-500 text-white"
-                  >Active
-                  </button>
+                      onClick={() => handleMakeBlock(user)}
+                      className="btn btn-sm bg-green-500 text-white"
+                    >
+                      Active
+                    </button>
                   ) : (
                     <button
                       onClick={() => handleMakeActive(user)}
                       className="btn btn-sm bg-red-500 text-white"
-                    >Block
+                    >
+                      Block
                     </button>
-                  )}</td>
+                  )}
+                </td>
                 <td>
                   {user.role === "admin" ? (
                     "Admin"
@@ -161,14 +245,14 @@ const AllUsers = () => {
                   {/* The button to open modal */}
                   <label
                     htmlFor="my_modal_6"
-                    onClick={() => setSelectedData(user)}
+                    onClick={() => setUserSelectedData(user)}
                     className="btn btn-ghost btn-sm bg-colorPrimary text-white"
                   >
                     See Info
                   </label>
 
                   {/* Put this part before </body> tag */}
-                  {selectedData && (
+                  {userSelectedData && (
                     <>
                       <input
                         type="checkbox"
@@ -180,23 +264,23 @@ const AllUsers = () => {
                           <div className="flex items-center justify-center">
                             <img
                               className="max-w-96 rounded-3xl"
-                              src={selectedData.avatar}
+                              src={userSelectedData.avatar}
                               alt=""
                             />
                           </div>
                           <h3 className="text-xl font-medium tracking-tight text-white mt-6">
-                            Name: {selectedData.name}
+                            Name: {userSelectedData.name}
                           </h3>
                           <p className="text-blue-200 mt-4">
                             {" "}
-                            Email: {selectedData.email}
+                            Email: {userSelectedData.email}
                           </p>
                           <p className="text-blue-200 mt-4">
-                            Blood Group: {selectedData.bloodGroup}
+                            Blood Group: {userSelectedData.bloodGroup}
                           </p>
                           <p className="text-blue-200 mt-4">
-                            Address: {selectedData?.district},{" "}
-                            {selectedData?.upazila}.
+                            Address: {userSelectedData?.district},{" "}
+                            {userSelectedData?.upazila}.
                           </p>
 
                           <div className="modal-action">
@@ -219,6 +303,14 @@ const AllUsers = () => {
                   >
                     <FaTrashAlt className="text-red-600"></FaTrashAlt>
                   </button>
+                </td>
+                <td>
+                  <label
+                    onClick={() => bothHandleClick(user)}
+                    className="btn btn-ghost btn-sm bg-colorPrimary text-white"
+                  >
+                    Download record
+                  </label>
                 </td>
               </tr>
             ))}

@@ -75,6 +75,8 @@ export const router = createBrowserRouter([
       {
         path: "/dashboard/allUsers",
         element: <AdminRoute><AllUsers></AllUsers></AdminRoute> ,
+        loader: () =>
+          fetch(`http://localhost:5000/appointments`),
       },
       {
         path: "/dashboard/addTest",

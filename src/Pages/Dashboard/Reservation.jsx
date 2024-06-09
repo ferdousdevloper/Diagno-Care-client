@@ -3,11 +3,7 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 //import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
-import jsPDF from 'jspdf';
 
-import { useRef } from "react";
-import html2canvas from "html2canvas";
-//import Reservation from './Reservation';
 //------------------------------------------------------------------
 
 //----------------------------------------------------------------
@@ -23,30 +19,15 @@ const Reservation = () => {
       return res.data;
     },
   });
+  
+//----------------------------------------------------------
 
-  //const { _id } = appointment;
-  console.log(appointment);
-  //for report delivered
-  /*
-  const handleMakeDelivered = (i) => {
-    const reportStatus ={
-      report: i.report.report,
-    }
-    axiosSecure.patch(`/appointments/report/${i._id}`, reportStatus).then((res) => {
-      console.log(res.data);
-      if (res.data.modifiedCount > 0) {
-        refetch();
-        Swal.fire({
-          position: "top-end",
-          icon: "success",
-          title: `${i.report} is an Admin Now!`,
-          showConfirmButton: false,
-          timer: 1500,
-        });
-      }
-    });
-  };
-  */
+//TODO SEARCH METHOD ============================
+//-----------------------------------------------------------------
+
+  
+
+
 
   const handleDeleteItem = (item) => {
     Swal.fire({
@@ -77,30 +58,45 @@ const Reservation = () => {
     });
   };
 
-  //-------------------------------------------------------------
 
-  // const callBothFunctions = (i) =>{
-  //   generatePdf(i)
-  // }
-
-
-  const generatePdf = (i) => {
-
-      
-     console.log(i.title);
-     const doc = new jsPDF();
-     doc.text("Test Title: "+ i.title, 10, 10);
-     doc.text("Test Title: "+ i.title, 10, 20);
-
-
-
-
-     doc.save('demo.pdf');
-  };
   return (
     <div>
       <h1>Reservation{appointment.length}</h1>
       <div className="overflow-x-auto">
+
+      <form
+        data-aos="fade-up"
+        data-aos-duration="500"
+        data-aos-delay="1000"
+        //onSubmit={handleSearch}
+        className="flex gap-1 items-center justify-center mx-auto my-10"
+      >
+        <label className="input input-bordered flex items-center gap-2">
+          <input
+            type="text"
+            className="grow"
+            placeholder="Search by email"
+            //onChange={(e) => setSearchText(e.target.value)}
+            //value={searchText}
+            name="search"
+          />
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 16 16"
+            fill="currentColor"
+            className="w-4 h-4 opacity-70"
+          >
+            <path
+              fillRule="evenodd"
+              d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z"
+              clipRule="evenodd"
+            />
+          </svg>
+        </label>
+        <button className="px-1 md:px-4 py-3 text-sm font-medium tracking-wider text-gray-100 uppercase transition-colors duration-300 transform bg-colorPrimary rounded-md hover:bg-black focus:bg-gray-600 focus:outline-none">
+          Search
+        </button>
+      </form>
         <table className="table table-zebra">
           {/* head */}
           <thead>
@@ -146,9 +142,6 @@ const Reservation = () => {
                   >
                     Cancel Reservation
                   </button>
-                </td>
-                <td>
-                <button onClick={()=> generatePdf(i)}>Generate PDF</button>
                 </td>
               </tr>
             ))}

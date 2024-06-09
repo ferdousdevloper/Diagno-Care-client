@@ -1,4 +1,4 @@
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import useAxiosPublic from "./../../hooks/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
 import Loader from "../Loader/Loader";

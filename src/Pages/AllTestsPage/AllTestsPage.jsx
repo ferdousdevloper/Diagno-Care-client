@@ -1,19 +1,40 @@
 import { useEffect, useState } from "react";
 import useAllTest from "../../hooks/useAllTest";
 import { Link } from "react-router-dom";
+import Pagination from "../../components/Pagination/Pagination";
 
 const AllTestsPage = () => {
   const allTests = useAllTest([]);
   const allTestsData = allTests[0];
   const [filteredData, setFilteredData] = useState([]);
+  //---------------------PAGINATION---------------------------------
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 6;
 
-  useEffect(() => {
-    const currentDate = new Date();
-    const futureData = allTestsData.filter(
-      (item) => new Date(item.date) >= currentDate
-    );
-    setFilteredData(futureData);
-  }, [allTestsData]);
+    
+
+ // Calculate total pages
+ const totalPages = Math.ceil(filteredData.length / itemsPerPage);
+
+ // Get current items
+ const startIndex = (currentPage - 1) * itemsPerPage;
+ const currentItems = filteredData.slice(startIndex, startIndex + itemsPerPage);
+
+ const handlePageChange = (page) => {
+   if (page >= 1 && page <= totalPages) {
+     setCurrentPage(page);
+   }
+ };
+
+ useEffect(() => {
+   const currentDate = new Date();
+   if (Array.isArray(allTestsData)) {
+     const futureData = allTestsData.filter(
+       (item) => new Date(item.date) >= currentDate
+     );
+     setFilteredData(futureData);
+   }
+ }, [allTestsData]); // Ensure this dependency is stable
 
   //----------------------------------------------------------
 
@@ -63,7 +84,7 @@ const AllTestsPage = () => {
       </form>
         <div>
           <div className="grid md:grid-cols-3 gap-10">
-            {filteredData.map((i) => (
+            {currentItems.map((i) => (
               <div key={i._id} className="flex flex-col transition duration-300 bg-white rounded shadow-2xl hover:shadow">
                 <div className="relative w-full h-48">
                   <img
@@ -114,6 +135,7 @@ const AllTestsPage = () => {
               </div>*/
             ))}
           </div>
+          <Pagination totalPages={totalPages} currentPage={currentPage} onPageChange={handlePageChange} />
         </div>
       </div>
     </div>

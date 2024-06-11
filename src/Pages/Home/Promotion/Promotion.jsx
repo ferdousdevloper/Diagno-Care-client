@@ -6,7 +6,7 @@ const Promotion = () => {
           id: 1,
           title: "Summer Health Checkup",
           description: "Get a comprehensive health checkup at a discounted price. Ensure your well-being this summer!",
-          image: "https://img.freepik.com/free-photo/female-nurse-clinic-practicing-medicine_23-2149868902.jpg?t=st=1718074329~exp=1718077929~hmac=652636beb174a37e729f97087b1a5bdba8bb874706269d33b83a7b0638fc8f11&w=1380",
+          image: "https://i.ibb.co/QrMLKpX/female-nurse-clinic-practicing-medicine-23-2149868902.jpg",
           discount: "20% OFF",
           link: "/allTests",
           coupon: "DIAGNO20"
@@ -15,7 +15,7 @@ const Promotion = () => {
           id: 2,
           title: "Consultation",
           description: "Book an appointment today and get a free consultation with our top specialists.",
-          image: "https://img.freepik.com/free-photo/african-american-doctor-analyzing-medical-reports-with-her-colleagues-clinic_637285-11176.jpg?t=st=1718074412~exp=1718078012~hmac=5ea456eb14de3bd3ae7fee048340305ff73ffd96ba212abb8c3e45ae0403ce1b&w=1380",
+          image: "https://i.ibb.co/PWr3X7D/african-american-doctor-analyzing-medical-reports-with-her-colleagues-clinic-637285-11176.jpg",
           discount: "25% OFF",
           link: "/promotions/free-consultation",
           coupon: "DIAGNO25"
@@ -24,7 +24,7 @@ const Promotion = () => {
           id: 3,
           title: "Family Health Package",
           description: "Comprehensive health packages for your entire family at an unbeatable price. Health for all!",
-          image: "https://img.freepik.com/free-photo/doctor-asking-nurse-pills-consultation-medical-office-physician-specialist-medicine-providing-health-care-services-consultation-diagnostic-examination-treatment-hospital-cabinet_482257-14532.jpg?t=st=1718074520~exp=1718078120~hmac=0b1c2434c1d04ac322380088c7f578aa42a446aa5aabb071d837de637052fd4e&w=1480",
+          image: "https://i.ibb.co/8bqpGw0/doctor-asking-nurse.jpg",
           discount: "30% OFF",
           link: "/promotions/family-health-package",
           coupon: "DIAGNO30"

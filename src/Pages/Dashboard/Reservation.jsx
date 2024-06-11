@@ -63,9 +63,11 @@ const Reservation = () => {
 
   return (
     <div>
-      <h1>Reservation{appointment.length}</h1>
       <div className="overflow-x-auto">
-
+      <h1 className="text-6xl fontBebas font-extrabold text-center mb-10">
+        RESERVATION
+      </h1>
+      <hr />
       <form
         data-aos="fade-up"
         data-aos-duration="500"

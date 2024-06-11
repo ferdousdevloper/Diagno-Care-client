@@ -57,7 +57,9 @@ const MyAppointments = () => {
 
   return (
     <div>
-      <h1>MY UPCOMMING APPOINMENTS</h1>
+      <h1 className="text-6xl fontBebas font-extrabold text-center my-10">
+        UPCOMMING APPOINTMENTS
+      </h1>
       <div className="overflow-x-auto">
         <table className="table table-zebra">
           {/* head */}

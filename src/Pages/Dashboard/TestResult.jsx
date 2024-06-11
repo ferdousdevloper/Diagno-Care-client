@@ -25,6 +25,9 @@ const TestResult = () => {
 
   return (
     <div>
+      <h1 className="text-6xl fontBebas font-extrabold text-center my-10">
+        TEST RESULTS
+      </h1>
       <div className="overflow-x-auto">
         <table className="table table-zebra">
           {/* head */}

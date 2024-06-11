@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 
 
 const Promotion = () => {
@@ -55,7 +56,7 @@ const Promotion = () => {
               <p className="text-sm md:text-base text-gray-700 mb-4">{promotion.description}</p>
               <p className="text-sm md:text-base text-gray-700 mb-4"><strong>Coupon Code:</strong> {promotion.coupon}</p>
               <div className="flex justify-end">
-                <a href={promotion.link} className="btn bg-colorPrimary hover:bg-black text-white font-bold py-2 px-4 rounded-full transition duration-300">Learn More</a>
+                <Link to="/allTests" className="btn bg-colorPrimary hover:bg-black text-white font-bold py-2 px-4 rounded-full transition duration-300">Learn More</Link>
               </div>
             </div>
           </div>

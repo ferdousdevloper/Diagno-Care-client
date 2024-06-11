@@ -184,11 +184,10 @@ const AllUsers = () => {
 
   return (
     <div>
-      <h1>All Users</h1>
-      <div className="flex justify-evenly my-4">
-        <h2 className="text-3xl">All Users</h2>
-        <h2 className="text-3xl">Total Users: {users.length}</h2>
-      </div>
+      <h1 className="text-xl md:text-6xl fontBebas font-extrabold text-center mb-10">
+        ALL USERS
+      </h1>
+      <hr className="my-10 border-2" />
       <div className="overflow-x-auto">
         <table className="table table-zebra w-full">
           {/* head */}

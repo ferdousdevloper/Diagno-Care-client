@@ -39,7 +39,7 @@ const AddBanner = () => {
         Swal.fire({
           position: "top-end",
           icon: "success",
-          title: `${data.name} is added to the menu.`,
+          title: `${data.title} is added to the menu.`,
           showConfirmButton: false,
           timer: 1500,
         });

@@ -122,9 +122,10 @@ const navigate = useNavigate();
   const defaultPrice =tests?.price
 
   const validCoupons = {
-    'DISCOUNT10': 10,
+    
+    'DIAGNO20': 20, // Assuming FREESHIP gives a flat $5 discount
     'DIAGNO25': 25, // Assuming FREESHIP gives a flat $5 discount
-    'SAVE20': 20
+    'DIAGNO30': 30, // Assuming FREESHIP gives a flat $5 discount
   };
 
   const handleCouponSubmit = (e) => {

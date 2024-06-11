@@ -102,17 +102,30 @@ const AddBanner = () => {
               <label className="label">
                 <span className="label-text">Coupon Code</span>
               </label>
-              <input
+              <select className="select select-bordered w-full max-w-xs"
+              {...register("coupon_code", { required: true })}>
+                <option disabled selected>
+                  Select Coupon
+                </option>
+                <option value="DIAGNO20">DIAGNO20</option>
+                <option value="DIAGNO25">DIAGNO25</option>
+                <option value="DIAGNO30">DIAGNO30</option>
+              </select>
+              {/* <input
                 type="text"
                 placeholder="Coupon Code"
                 {...register("coupon_code", { required: true })}
                 className="input input-bordered w-full"
-              />
+              /> */}
             </div>
           </div>
           <div className="form-control w-full my-6">
-                        <input {...register('image', { required: true })} type="file" className="file-input w-full max-w-3xl bg-colorPrimary text-white" />
-                    </div>
+            <input
+              {...register("image", { required: true })}
+              type="file"
+              className="file-input w-full max-w-3xl bg-colorPrimary text-white"
+            />
+          </div>
           {/* Description */}
           <div className="form-control">
             <label className="label">

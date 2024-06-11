@@ -32,7 +32,7 @@ const About = () => {
           </div>
           <div>
             <img
-              src="https://img.freepik.com/free-photo/young-handsome-physician-medical-robe-with-stethoscope_1303-17818.jpg?t=st=1718083695~exp=1718087295~hmac=e2f25e64a7be8da35c9a5948df1bee0b7d48449d0b15e0199a565adf65c2bf58&w=1380"
+              src="https://i.ibb.co/SxZNxvC/17818.jpg"
               alt="About DiagnoCare"
               className="rounded-lg shadow-md"
             />

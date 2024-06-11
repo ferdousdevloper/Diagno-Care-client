@@ -36,8 +36,10 @@ const Contact = () => {
                 </p>
                 <div className="mb-4">
                     <h3 className="text-lg font-semibold mb-2">DiagnoCare Clinic</h3>
-                    <p className="text-gray-700 mb-1">123 Main Street</p>
-                    <p className="text-gray-700">City, State, ZIP Code</p>
+                    <p className="text-gray-700 mb-1">Email: eng.mfhossain@gmail.com</p>
+                    <p className="text-gray-700 mb-1">Mobile: +8801858908893</p>
+                    <p className="text-gray-700 mb-1">275 Cambridge St</p>
+                    <p className="text-gray-700">Boston, MA 02114</p>
                 </div>
                 <iframe title="DiagnoCare Location" className="w-full h-64 rounded-lg shadow-md" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12345.678910111213!2d-71.0564756275327!3d42.36393702854962!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e3775f5c94fb9b%3A0x7fbc8741c4029314!2sDiagnoCare%20Clinic!5e0!3m2!1sen!2sus!4v1623371873566!5m2!1sen!2sus" allowFullScreen></iframe>
             </div>

@@ -6,7 +6,7 @@ import toast from "react-hot-toast";
 import Loader from "../../components/Loader/Loader";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import useAuth from "./../../hooks/useAuth";
-import useAdmin from "../../hooks/useAdmin";
+//import useAdmin from "../../hooks/useAdmin";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(true);
@@ -43,12 +43,12 @@ const Login = () => {
   };
 
   return (
-    <div className="md:w-4/6 mx-auto ">
+    <div className="md:w-4/6 mx-auto py-32">
       {loading && <Loader></Loader>}
       <h1 className="text-5xl font-bold text-center pt-10 md:pt-20">
         Login now!
       </h1>
-      <div className="hero min-h-screen md:pt-20 ">
+      <div className="hero md:pt-20 ">
         <div className="hero-content flex-col lg:flex-row">
           <div className="text-center">
             <div>

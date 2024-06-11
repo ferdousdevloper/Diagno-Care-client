@@ -3,6 +3,7 @@ import { useLoaderData, useNavigate } from "react-router-dom";
 // import useAxiosPublic from './../../hooks/useAxiosPublic';
 import useAxiosSecure from './../../hooks/useAxiosSecure';
 import Swal from "sweetalert2";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 const UpdateBanner = () => {
     const { _id,  status, text, title, coupon_code, discount_rate} = useLoaderData()
@@ -11,6 +12,7 @@ const UpdateBanner = () => {
     const { register, handleSubmit } = useForm();
     // const axiosPublic = useAxiosPublic();
     const axiosSecure = useAxiosSecure();
+    const axiosPublic = useAxiosPublic();
 
     const onSubmit = async (data) =>{
         
@@ -24,7 +26,7 @@ const UpdateBanner = () => {
 
         }
         // 
-        const banner = await axiosSecure.patch(`/banner/${_id}`, bannerItem);
+        const banner = await axiosPublic.patch(`/banner/${_id}`, bannerItem);
         console.log(banner.data)
         if(banner.data.modifiedCount > 0){
             // show success popup

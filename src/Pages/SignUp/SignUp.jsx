@@ -90,7 +90,7 @@ const SignUp = () => {
         .success("Signup Successful")
 
         const user = { email, avatar, name, status, bloodGroup, district, upazila};
-        fetch('http://localhost:5000/user', {
+        fetch('https://diagno-care-server-site.vercel.app/user', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -239,7 +239,7 @@ const SignUp = () => {
 
   return (
     <div>
-      <h1 className="text-5xl font-bold text-center pt-10 md:pt-20 ">
+      <h1 className="text-5xl font-bold text-center pt-32 ">
         Register now!
       </h1>
       <div className="hero min-h-screen">

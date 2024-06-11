@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 const Banner = () => {
     const [banner, setBanner] = useState([])
     useEffect(() => {
-        fetch('http://localhost:5000/banner')
+        fetch('https://diagno-care-server-site.vercel.app/banner')
             .then(res => res.json())
             .then(data => 
                 setBanner(data))

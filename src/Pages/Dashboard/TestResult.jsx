@@ -2,19 +2,21 @@
 
 import { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
-import useAxiosSecure from "../../hooks/useAxiosSecure";
+//import useAxiosSecure from "../../hooks/useAxiosSecure";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 const TestResult = () => {
   const { user } = useAuth();
   const [item, setItem] = useState([]);
-  const axiosSecure = useAxiosSecure();
+  //const axiosSecure = useAxiosSecure();
+  const axiosPublic = useAxiosPublic();
 
   useEffect(() => {
     getData();
   }, [user]);
 
   const getData = async () => {
-    const { data } = await axiosSecure(`/appointment/${user?.email}`);
+    const { data } = await axiosPublic.get(`/appointment/${user?.email}`);
     const filterData = data.filter((item) => item.report === "delivered");
     setItem(filterData);
   };

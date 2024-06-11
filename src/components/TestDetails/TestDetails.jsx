@@ -90,7 +90,7 @@ const navigate = useNavigate();
       return;
     }
     //
-    const bookNowRes = await axiosSecure.post("/appointments", bookNow);
+    const bookNowRes = await axiosPublic.post("/appointments", bookNow);
     console.log(bookNowRes.data);
     if (bookNowRes.data.insertedId) {
       setIsBook(true)
@@ -105,7 +105,7 @@ const navigate = useNavigate();
       });
     }
     console.log("with image url", data);
-    const slotCount = await axiosSecure.patch(`/alltest/${_id}`, slotsCount);
+    const slotCount = await axiosPublic.patch(`/alltest/${_id}`, slotsCount);
     console.log(slotCount);
     refetch();
 

@@ -88,7 +88,7 @@ export const router = createBrowserRouter([
         path: "/dashboard/allUsers",
         element: <AdminRoute><AllUsers></AllUsers></AdminRoute> ,
         loader: () =>
-          fetch(`http://localhost:5000/appointments`),
+          fetch(`https://diagno-care-server-site.vercel.app/appointments`),
       },
       {
         path: "/dashboard/addTest",
@@ -102,7 +102,7 @@ export const router = createBrowserRouter([
         path: "/dashboard/allTests/:_id",
         element: <AdminRoute><TestUpdate></TestUpdate></AdminRoute> ,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/allTests/${params._id}`),
+          fetch(`https://diagno-care-server-site.vercel.app/allTests/${params._id}`),
       },
       {
         path: "/dashboard/reservation",
@@ -112,7 +112,7 @@ export const router = createBrowserRouter([
         path: "/dashboard/reservation/:_id",
         element: <AdminRoute><MakeReport></MakeReport></AdminRoute> ,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/appointments/${params._id}`),
+          fetch(`https://diagno-care-server-site.vercel.app/appointments/${params._id}`),
       },
       {
         path: "/dashboard/addBanner",
@@ -126,7 +126,7 @@ export const router = createBrowserRouter([
         path: "/dashboard/banner/:_id",
         element: <UpdateBanner></UpdateBanner>,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/banner/${params._id}`),
+          fetch(`https://diagno-care-server-site.vercel.app/banner/${params._id}`),
       },
       {
         path: "/dashboard/statistics",

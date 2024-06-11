@@ -1,12 +1,14 @@
 import { useForm } from "react-hook-form";
 import { useLoaderData, useNavigate } from "react-router-dom";
-import useAxiosSecure from "../../hooks/useAxiosSecure";
+//import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 const MakeReport = () => {
   const { register, handleSubmit } = useForm();
   const navigate = useNavigate()
-  const axiosSecure = useAxiosSecure();
+  //const axiosSecure = useAxiosSecure();
+  const axiosPublic = useAxiosPublic();
   const report = useLoaderData();
   console.log(report._id);
 
@@ -17,7 +19,7 @@ const MakeReport = () => {
         reportLink: data.reportLink,
         
     }
-    const reportUpdate = await axiosSecure.patch(`/appointments/${report._id}`, reportItem);
+    const reportUpdate = await axiosPublic.patch(`/appointments/${report._id}`, reportItem);
         console.log(reportUpdate.data)
         if(reportUpdate.data.modifiedCount > 0){
             // show success popup

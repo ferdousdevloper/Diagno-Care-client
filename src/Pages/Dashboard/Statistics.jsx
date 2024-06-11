@@ -1,21 +1,23 @@
 import { useQuery } from "@tanstack/react-query";
 import useAllTest from "./../../hooks/useAllTest";
-import useAxiosSecure from "../../hooks/useAxiosSecure";
+//import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 //----------------------------------------------------------
 import { PieChart, Pie, Cell, Tooltip, Legend } from "recharts";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 const Statistics = () => {
   const [tests] = useAllTest();
   console.log(tests);
 
-  const axiosSecure = useAxiosSecure();
+  //const axiosSecure = useAxiosSecure();
+  const axiosPublic = useAxiosPublic();
   //const { register, handleSubmit } = useForm();
 
-  const { refetch, data: appointment = [] } = useQuery({
+  const {  data: appointment = [] } = useQuery({
     queryKey: ["reserve"],
     queryFn: async () => {
-      const res = await axiosSecure.get(`/appointments`);
+      const res = await axiosPublic.get(`/appointments`);
       return res.data;
     },
   });

@@ -3,8 +3,9 @@
  import useAuth from "../../hooks/useAuth";
  //import useAxiosPublic from "../../hooks/useAxiosPublic";
  import { useQuery } from "@tanstack/react-query";
- import useAxiosSecure from "../../hooks/useAxiosSecure";
+ //import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { Link } from "react-router-dom";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 //import useAuth from "../../hooks/useAuth";
 
 
@@ -13,13 +14,14 @@ const Profile = () => {
   const {user, loading} = useAuth();
 
        //const { email } = useParams();
-    const axiosSecure = useAxiosSecure()
+    //const axiosSecure = useAxiosSecure()
+    const axiosPublic = useAxiosPublic()
 
   const { data: userInfo = {}, isLoading } = useQuery({
     queryKey: ["userInfo", user?.email],
     enabled: !loading && !!user?.email,
     queryFn: async () => {
-      const { data } = await axiosSecure.get(`/users/${user?.email}`);
+      const { data } = await axiosPublic.get(`/users/${user?.email}`);
       return data;
     },
   });

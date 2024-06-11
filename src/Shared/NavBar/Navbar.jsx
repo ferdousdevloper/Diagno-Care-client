@@ -180,7 +180,7 @@ const NavBar = () => {
               </div>
             ) : (
               <Link to="/login">
-                <button className="btn-sm md:btn md:px-8 rounded-3xl bg-[#0767a7] text-white border-0 hover:bg-black">
+                <button className="btn md:px-8 rounded-3xl bg-colorPrimary text-white border-0 hover:bg-black">
                   Login
                 </button>
               </Link>

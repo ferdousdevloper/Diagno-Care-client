@@ -1,13 +1,14 @@
 import { useQuery } from "@tanstack/react-query";
-import useAxiosSecure from "../../../hooks/useAxiosSecure";
+//import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import useAxiosPublic from "../../../hooks/useAxiosPublic";
 
 const FeturedTest = () => {
-  const axiosSecure = useAxiosSecure();
+  const axiosPublic = useAxiosPublic();
 
   const {  data: appointment = [] } = useQuery({
     queryKey: ["reserve"],
     queryFn: async () => {
-      const res = await axiosSecure.get(`/appointments`);
+      const res = await axiosPublic.get(`/appointments`);
       return res.data;
     },
   });

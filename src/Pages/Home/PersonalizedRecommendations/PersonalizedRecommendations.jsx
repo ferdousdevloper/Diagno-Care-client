@@ -8,16 +8,6 @@ import { useEffect, useState } from 'react';
 
 const PersonalizedRecommendations = () => {
 
-    // const axiosPublic = useAxiosPublic();
-
-    // const { data: recommendations = [] } = useQuery({
-    //     queryKey: ["reserve"],
-    //     queryFn: async () => {
-    //       const res = await axiosPublic.get(`/recommendations`);
-    //       return res.data;
-    //     },
-    //   });
-
     const [recommendations, setRecommendations] = useState([]);
 
   useEffect(() => {

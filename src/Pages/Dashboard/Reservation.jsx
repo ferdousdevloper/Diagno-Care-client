@@ -1,21 +1,23 @@
 import { useQuery } from "@tanstack/react-query";
-import useAxiosSecure from "../../hooks/useAxiosSecure";
+//import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 //import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 //------------------------------------------------------------------
 
 //----------------------------------------------------------------
 
 const Reservation = () => {
-  const axiosSecure = useAxiosSecure();
+  //const axiosSecure = useAxiosSecure();
+  const axiosPublic = useAxiosPublic();
   //const { register, handleSubmit } = useForm();
 
   const { refetch, data: appointment = [] } = useQuery({
     queryKey: ["reserve"],
     queryFn: async () => {
-      const res = await axiosSecure.get(`/appointments`);
+      const res = await axiosPublic.get(`/appointments`);
       return res.data;
     },
   });
@@ -40,7 +42,7 @@ const Reservation = () => {
       confirmButtonText: "Yes, cancel it!",
     }).then(async (result) => {
       if (result.isConfirmed) {
-        const res = await axiosSecure.delete(`/appointments/${item._id}`);
+        const res = await axiosPublic.delete(`/appointments/${item._id}`);
         // console.log(res.data);
         refetch();
         if (res.data.deletedCount > 0) {

@@ -9,7 +9,7 @@ const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_ke
 const AddBanner = () => {
   const { register, handleSubmit, reset } = useForm();
   const axiosPublic = useAxiosPublic();
-  const axiosSecure = useAxiosSecure();
+  //const axiosSecure = useAxiosSecure();
 
   const onSubmit = async (data) => {
     console.log(data);
@@ -31,7 +31,7 @@ const AddBanner = () => {
         image: res.data.data.display_url,
       };
       //
-      const bannerRes = await axiosSecure.post("/banner", addBanner);
+      const bannerRes = await axiosPublic.post("/banner", addBanner);
       console.log(bannerRes.data);
       if (bannerRes.data.insertedId) {
         // show success popup

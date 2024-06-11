@@ -67,6 +67,8 @@ const FirebaseAuthProvider = ({ children }) => {
                     if (res.data.token) {
                         localStorage.setItem('access-token', res.data.token);
                         setLoading(false);
+                        console.log(res.data.token)
+                        console.log(userInfo)
                     }
                 })
         }

@@ -24,6 +24,9 @@ import UpdateProfile from "../Pages/Dashboard/UpdateProfile";
 import TestUpdate from "../Pages/Dashboard/TestUpdate";
 import BookNow from "../components/BookNow/BookNow";
 import MakeReport from "../Pages/Dashboard/MakeReport";
+import About from "../Pages/About/About";
+import Doctors from "../Pages/Doctors/Doctors";
+import Contact from "../Pages/Contact/Contact";
 
 export const router = createBrowserRouter([
   {
@@ -49,12 +52,21 @@ export const router = createBrowserRouter([
       },
       {
         path: "/allTests/:id",
-        element: <TestDetails></TestDetails>,
+        element: <PrivateRoute><TestDetails></TestDetails></PrivateRoute>,
       },
-      // {
-      //   path: "/bookNow/:id",
-      //   element: <PrivateRoute><BookNow></BookNow></PrivateRoute>,
-      // },
+      {
+        path: "/about",
+        element: <About></About>,
+      },
+      {
+        path: "/doctors",
+        element: <Doctors></Doctors> ,
+      },
+      {
+        path: "/contact",
+        element: <Contact></Contact>,
+      },
+      
     ],
   },
   {

@@ -17,15 +17,15 @@ const Banner = () => {
         <div className="">
             <Carousel autoPlay infiniteLoop>
                 {
-                    banner.map((i)=> <div key={i._id} className="relative max-h-[800px]">
-                    <img className="" src={i.image} />
-                    <div className="absolute top-[30%] left-[10%] text-left max-w-2xl">
-                        <h1 className="fontBebas text-6xl font-extrabold">{i.title}</h1>
-                        <p className="text-2xl font-semibold fontLibre">{i.text}</p>
-                        <p className="text-xl text-gray-500 font-semibold fontLibre">Use this coupon code: <span className="text-colorPrimary text-3xl">{i.coupon_code}</span></p>
-                        <p className="text-xl text-gray-500 font-semibold fontLibre">To get <span className="text-red-700 fontBebas text-5xl font-extrabold">{i.discount_rate}% </span> discount...</p>
+                    banner.map((i)=> <div key={i._id} className="relative min-h-96 max-h-[1000px]">
+                    <img className="h-full w-full" src={i.image} />
+                    <div className="absolute top-[0%] flex flex-col justify-center left-[0%] px-20 text-left max-w-2xl bg-gray-100 bg-opacity-20 backdrop-filter backdrop-blur-sm h-full">
+                        <h1 className="fontBebas text-base md:text-6xl font-extrabold">{i.title}</h1>
+                        <p className="text-lg md:text-2xl font-semibold fontLibre">{i.text}</p>
+                        <p className="text-base md:text-xl text-gray-500 font-semibold fontLibre">Use this coupon code: <span className="text-colorPrimary text-lg md:text-3xl">{i.coupon_code}</span></p>
+                        <p className=" text-base md:text-xl text-gray-500 font-semibold fontLibre">To get <span className="text-red-700 fontBebas md:text-5xl font-extrabold">{i.discount_rate}% </span> discount...</p>
                         <Link to="/allTests">
-                        <button className="btn bg-colorPrimary hover:bg-black text-white text-lg font-bold border-none my-6">Explore more</button>
+                        <button className="btn btn-sm md:btn-lg bg-colorPrimary hover:bg-black text-white text-sm md:text-lg font-bold border-none md:my-6">Explore more</button>
                         </Link>
                     </div>
                     

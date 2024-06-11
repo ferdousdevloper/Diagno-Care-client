@@ -60,6 +60,7 @@ const navigate = useNavigate();
     const bookNow = {
       title: data.title,
       shortDescription: data.shortDescription,
+      image: data.image,
       date: data.date,
       report: data.report,
       slots: parseFloat(data.slots),
@@ -167,28 +168,41 @@ const slotCount = parseInt(tests.slots);
 
   return (
     <div className="py-40">
-      <div className="container mx-auto">
-        <h1 className="text-6xl fontBebas font-extrabold text-center">
+      <div className="md:container md:mx-auto mx-2">
+        <h1 className="text-xl md:text-6xl fontBebas font-extrabold text-center">
           TEST DETAILS
         </h1>
-        <div className="hero py-20 px-20 bg-base-200">
-          <div className="flex flex-col lg:flex-row gap-10">
+        <hr className="my-10" />
+        <div className="hero md:py-20 md:px-20 border-y-[10px] border-y-colorPrimary shadow-lg mt-10">
+          <div className="flex flex-col lg:flex-row md:gap-10">
             <div>
               <img src={tests.image} className="rounded-lg shadow-2xl" />
             </div>
             <div>
               <form onSubmit={handleSubmit(onSubmit)}>
+                <div className="form-control w-full my-6 hidden">
+                  <input
+                    type="text"
+                    defaultValue={tests.image}
+                    readOnly
+                    {...register("image", { required: true })}
+                    required
+                    className="w-full text-3xl font-bold focus:outline-none bg-transparent"
+                  />
+                </div>
                 <div className="form-control w-full my-6">
+                  <p className="text-lg md:text-3xl font-bold ">Title:</p>
                   <input
                     type="text"
                     defaultValue={tests.title}
                     readOnly
                     {...register("title", { required: true })}
                     required
-                    className="w-full text-3xl font-bold focus:outline-none bg-transparent"
+                    className="w-full text-lg md:text-3xl font-bold focus:outline-none bg-transparent"
                   />
                 </div>
                 <div className="form-control w-full my-6">
+                  <p>Description:</p>
                   <input
                     type="text"
                     defaultValue={tests.shortDescription}
@@ -199,6 +213,7 @@ const slotCount = parseInt(tests.slots);
                   />
                 </div>
                 <div className="form-control w-full my-6">
+                  <p>Date:</p>
                   <input
                     type="text"
                     defaultValue={tests.date}
@@ -209,6 +224,7 @@ const slotCount = parseInt(tests.slots);
                   />
                 </div>
                 <div className="form-control w-full my-6">
+                  <p>Slots:</p>
                   <input
                     type="number"
                     defaultValue={tests.slots}
@@ -218,7 +234,8 @@ const slotCount = parseInt(tests.slots);
                     className="w-full focus:outline-none bg-transparent"
                   />
                 </div>
-                <div className="form-control my-6 focus:outline-none bg-transparent mt-1 mb-4 mr-1 text-2xl font-bold">
+                <div className="form-control my-6 focus:outline-none bg-transparent mt-1 mb-4 text-2xl font-bold">
+                  <p>Price:</p>
                   <p>
                     $
                     <input
@@ -311,7 +328,7 @@ const slotCount = parseInt(tests.slots);
                     onClick={() =>
                       document.getElementById("my_modal_4").showModal()
                     }
-                    className={isBook ? 'hidden' : "btn btn-primary"}
+                    className={isBook ? 'hidden' : "btn bg-colorPrimary text-white"}
                   >
                     Book Now
                   </button>
@@ -328,13 +345,14 @@ const slotCount = parseInt(tests.slots);
                         type="text"
                         value={coupon}
                         onChange={(e) => setCoupon(e.target.value)}
-                        className="input input-bordered w-full max-w-xs ml-4"
+                        className="input input-bordered w-full max-w-xs md:ml-4"
                       />
                     </label>
-                    <button type="submit" className="btn bg-colorPrimary">Apply Coupon</button>
+                    <button type="submit" className="btn bg-colorPrimary text-white">Apply Coupon</button>
                   </form>
                   <p>{message}</p>
                   <h2>Discounted Price: ${discountedPrice}</h2>
+                  <h2 className="text-xl font-bold text-green-600">Payable Price: ${discountedPrice}</h2>
                   {/**------------------------------------- */}
                   <div className="modal-action">
                     {/* <a
@@ -343,7 +361,7 @@ const slotCount = parseInt(tests.slots);
                     >
                       PAYMENT
                     </a> */}
-                    <button onClick={handlePaymentClick}>Payment</button>
+                    <button onClick={handlePaymentClick} className="btn bg-colorPrimary text-white">Payment</button>
                   </div>
                 </div>
               </dialog>)}

@@ -44,8 +44,8 @@ const AllTestsPage = () => {
 
   return (
     <div className="py-40">
-      <div className="container mx-auto ">
-        <h1 className="text-6xl fontBebas font-extrabold text-center">
+      <div className="md:container md:mx-auto mx-5">
+        <h1 className="text-2xl md:text-6xl fontBebas font-extrabold text-center">
           ALL TESTES
         </h1>
         {/* TODO================================== */}
@@ -85,7 +85,7 @@ const AllTestsPage = () => {
         <div>
           <div className="grid md:grid-cols-3 gap-10">
             {currentItems.map((i) => (
-              <div key={i._id} className="flex flex-col transition duration-300 bg-white rounded shadow-2xl hover:shadow">
+              <div key={i._id} className="flex flex-col transition duration-300 bg-white  shadow-xl hover:shadow rounded-bl-[100px] border-b-[10px] border-colorPrimary">
                 <div className="relative w-full h-48">
                   <img
                     src={i.image}
@@ -93,7 +93,7 @@ const AllTestsPage = () => {
                     alt="Plan"
                   />
                 </div>
-                <div className="flex flex-col justify-between flex-grow p-8 border border-t-0 rounded-b">
+                <div className="flex flex-col justify-between flex-grow p-8">
                   <div className="py-2">
                     <div className="text-4xl font-semibold mb-4">{i.title}</div>
                     <p className="text-sm text-gray-900 ">

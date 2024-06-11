@@ -22,10 +22,10 @@ const NavBar = () => {
           className={({ isActive }) =>
             isActive
               ? "text-colorPrimary font-bold border border-colorPrimary mr-3 scale-105 rounded-full"
-              : "font-bold mr-3"
+              : "font-bold mr-3 "
           }
         >
-          Home
+          HOME
         </NavLink>
       </li>
       <li>
@@ -33,16 +33,59 @@ const NavBar = () => {
           to="/allTests"
           className={({ isActive }) =>
             isActive
-              ? "text-colorPrimary font-bold border border-colorPrimary mr-3 scale-105"
-              : "font-bold mr-3"
+              ? "text-colorPrimary font-bold border border-colorPrimary mr-3 scale-105 rounded-full"
+              : "font-bold mr-3 "
           }
         >
-          All Tests
+          ALL TESTS
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to="/about"
+          className={({ isActive }) =>
+            isActive
+              ? "text-colorPrimary font-bold border border-colorPrimary mr-3 scale-105 rounded-full"
+              : "font-bold mr-3 "
+          }
+        >
+          ABOUT US
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to="/doctors"
+          className={({ isActive }) =>
+            isActive
+              ? "text-colorPrimary font-bold border border-colorPrimary mr-3 scale-105 rounded-full"
+              : "font-bold mr-3 "
+          }
+        >
+          DOCTORS
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to="/contact"
+          className={({ isActive }) =>
+            isActive
+              ? "text-colorPrimary font-bold border border-colorPrimary mr-3 scale-105 rounded-full"
+              : "font-bold mr-3 "
+          }
+        >
+          CONTACT US
         </NavLink>
       </li>
       {user && (
         <li>
-          <NavLink to="/dashboard/profile">Dashboard</NavLink>
+          <NavLink 
+          to="/dashboard/profile"
+          className={({ isActive }) =>
+            isActive
+              ? "text-colorPrimary font-bold border border-colorPrimary mr-3 scale-105 rounded-full"
+              : "font-bold mr-3 "
+          }
+          >DASHBOARD</NavLink>
         </li>
       )}
     </>
@@ -51,9 +94,10 @@ const NavBar = () => {
   return (
     <>
       <div className="">
-        <div className="navbar fixed z-10 bg-opacity-30  bg-black text-white px-52">
+        
+        <div className="navbar fixed z-[99]  bg-gray-100 bg-opacity-20 backdrop-filter backdrop-blur-sm px-16">
           <div className="navbar-start">
-            <div className="dropdown">
+            <div className="dropdown z-[99]">
               <label tabIndex={0} className="btn btn-ghost lg:hidden">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -77,8 +121,10 @@ const NavBar = () => {
                 {navOptions}
               </ul>
             </div>
-            <img className="h-[50px]" src={logo} alt="" />
-            <a className="btn btn-ghost normal-case text-xl">Diagno Care</a>
+
+            <Link to="/" className="">
+              <img className="md:h-[100px] h-[50px]"  src={logo} alt="" />
+            </Link>
           </div>
           <div className="navbar-center hidden lg:flex">
             <ul className="menu menu-horizontal px-1">{navOptions}</ul>
@@ -134,7 +180,7 @@ const NavBar = () => {
               </div>
             ) : (
               <Link to="/login">
-                <button className="btn px-8 rounded-3xl bg-[#0767a7] text-white border-0 hover:bg-black">
+                <button className="btn-sm md:btn md:px-8 rounded-3xl bg-[#0767a7] text-white border-0 hover:bg-black">
                   Login
                 </button>
               </Link>

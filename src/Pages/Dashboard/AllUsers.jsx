@@ -6,6 +6,7 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 import { useLoaderData } from "react-router-dom";
 import jsPDF from "jspdf";
+import { Helmet } from "react-helmet";
 //import useAuth from "../../hooks/useAuth";
 //import Loader from "../../components/Loader/Loader";
 
@@ -184,6 +185,9 @@ const AllUsers = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Diagno Care | All Users</title>
+      </Helmet>
       <h1 className="text-xl md:text-6xl fontBebas font-extrabold text-center mb-10">
         ALL USERS
       </h1>

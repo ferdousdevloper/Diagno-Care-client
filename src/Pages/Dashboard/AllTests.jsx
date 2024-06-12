@@ -3,6 +3,7 @@ import useAllTest from "../../hooks/useAllTest";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { Helmet } from "react-helmet";
 
 const AllTests = () => {
   const [allTests, refetch] = useAllTest();
@@ -38,6 +39,9 @@ const AllTests = () => {
   };
   return (
     <div>
+      <Helmet>
+        <title>Diagno Care | All Tests</title>
+      </Helmet>
       <h1 className="text-6xl fontBebas font-extrabold text-center">
         ALL TESTS
       </h1>

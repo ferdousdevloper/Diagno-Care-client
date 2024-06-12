@@ -5,6 +5,7 @@ import useAllTest from "./../../hooks/useAllTest";
 //----------------------------------------------------------
 import { PieChart, Pie, Cell, Tooltip, Legend } from "recharts";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
+import { Helmet } from "react-helmet";
 
 const Statistics = () => {
   const [tests] = useAllTest();
@@ -56,6 +57,9 @@ const renderCustomLabel = ({ name, percentage }) => `${name}: ${percentage}%`;
 
   return (
     <div>
+      <Helmet>
+        <title>Diagno Care | Statistics</title>
+      </Helmet>
       <h1 className="text-6xl fontBebas font-extrabold text-center mb-10">
         STATISTICS
       </h1>

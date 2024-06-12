@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import useAllTest from "../../hooks/useAllTest";
 import { Link } from "react-router-dom";
 import Pagination from "../../components/Pagination/Pagination";
+import { Helmet } from "react-helmet";
 
 const AllTestsPage = () => {
   const allTests = useAllTest([]);
@@ -44,6 +45,9 @@ const AllTestsPage = () => {
 
   return (
     <div className="py-40">
+      <Helmet>
+        <title>Diagno Care | All Tests</title>
+      </Helmet>
       <div className="md:container md:mx-auto mx-5">
         <h1 className="text-2xl md:text-6xl fontBebas font-extrabold text-center">
           ALL TESTES

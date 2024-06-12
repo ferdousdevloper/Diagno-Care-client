@@ -4,6 +4,7 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 //import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { Helmet } from "react-helmet";
 //import { useState } from "react";
 
 const TestUpdate = () => {
@@ -48,6 +49,9 @@ const TestUpdate = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Diagno Care | Test Update</title>
+      </Helmet>
       <h1 className="text-6xl fontBebas font-extrabold text-center">
         UPDATE TEST
       </h1>

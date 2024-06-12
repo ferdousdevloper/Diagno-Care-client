@@ -6,6 +6,7 @@ import toast from "react-hot-toast";
 import Loader from "../../components/Loader/Loader";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import useAuth from "./../../hooks/useAuth";
+import { Helmet } from "react-helmet";
 //import useAdmin from "../../hooks/useAdmin";
 
 const Login = () => {
@@ -44,6 +45,9 @@ const Login = () => {
 
   return (
     <div className="md:w-4/6 mx-auto py-32">
+      <Helmet>
+        <title>Diagno Care | Login</title>
+      </Helmet>
       {loading && <Loader></Loader>}
       <h1 className="text-5xl font-bold text-center pt-10 md:pt-20">
         Login now!

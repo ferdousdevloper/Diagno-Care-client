@@ -4,6 +4,7 @@ import Swal from "sweetalert2";
 //import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
+import { Helmet } from "react-helmet";
 
 //------------------------------------------------------------------
 
@@ -63,6 +64,9 @@ const Reservation = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Diagno Care | Reservation</title>
+      </Helmet>
       <div className="overflow-x-auto">
       <h1 className="text-6xl fontBebas font-extrabold text-center mb-10">
         RESERVATION

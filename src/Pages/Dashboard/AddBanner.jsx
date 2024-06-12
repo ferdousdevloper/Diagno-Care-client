@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 import useAxiosPublic from "./../../hooks/useAxiosPublic";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet";
 
 const image_hosting_key = import.meta.env.VITE_IMGBB_API_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
@@ -50,6 +51,9 @@ const AddBanner = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Diagno Care | Add Banner</title>
+      </Helmet>
       <h1 className="text-6xl fontBebas font-extrabold text-center">
         UPDATE BANNER
       </h1>
@@ -102,8 +106,10 @@ const AddBanner = () => {
               <label className="label">
                 <span className="label-text">Coupon Code</span>
               </label>
-              <select className="select select-bordered w-full max-w-xs"
-              {...register("coupon_code", { required: true })}>
+              <select
+                className="select select-bordered w-full max-w-xs"
+                {...register("coupon_code", { required: true })}
+              >
                 <option disabled selected>
                   Select Coupon
                 </option>

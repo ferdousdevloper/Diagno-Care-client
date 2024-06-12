@@ -3,6 +3,7 @@ import { useLoaderData, useNavigate } from "react-router-dom";
 //import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
+import { Helmet } from "react-helmet";
 
 const MakeReport = () => {
   const { register, handleSubmit } = useForm();
@@ -40,14 +41,16 @@ const MakeReport = () => {
 
   return (
     <div>
-      <h1>make report</h1>
+      <Helmet>
+        <title>Diagno Care | Report</title>
+      </Helmet>
 
       <section className="h-screen bg-gray-100/50">
         <form
           onSubmit={handleSubmit(onSubmit)}
           className="container max-w-2xl mx-auto shadow-md md:w-3/4"
         >
-          <div className="p-4 border-t-2 border-indigo-400 rounded-lg bg-gray-100/5 ">
+          <div className="p-4 border-t-2 border-colorPrimary rounded-lg bg-gray-100/5 ">
             <div className="max-w-sm mx-auto md:w-full md:mx-0">
               <div className="inline-flex items-center space-x-4">
                 <a href="#" className="relative block">

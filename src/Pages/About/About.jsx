@@ -1,7 +1,11 @@
+import { Helmet } from "react-helmet";
+
 const About = () => {
   return (
     <div className="md:pt-52 pt-20">
-      
+      <Helmet>
+        <title>Diagno Care | About us</title>
+      </Helmet>
       <div className="container mx-auto px-4 py-8">
         <h1 className="text-3xl font-bold mb-4">About DiagnoCare</h1>
         <p className="text-lg text-gray-700 mb-8">

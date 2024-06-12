@@ -4,6 +4,7 @@ import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
+import { Helmet } from "react-helmet";
 
 const MyAppointments = () => {
 
@@ -57,6 +58,9 @@ const MyAppointments = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Diagno Care | Appointments</title>
+      </Helmet>
       <h1 className="text-6xl fontBebas font-extrabold text-center my-10">
         UPCOMMING APPOINTMENTS
       </h1>

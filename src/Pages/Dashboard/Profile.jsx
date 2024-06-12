@@ -6,6 +6,7 @@
  //import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { Link } from "react-router-dom";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
+import { Helmet } from "react-helmet";
 //import useAuth from "../../hooks/useAuth";
 
 
@@ -30,6 +31,9 @@ const Profile = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Diagno Care | Profile</title>
+      </Helmet>
       <section className="">
         <div className="max-w-6xl px-6 py-10 mx-auto">
           <h1 className="mt-2 text-2xl font-semibold capitalize lg:text-3xl text-colorPrimary ">

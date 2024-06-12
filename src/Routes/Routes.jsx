@@ -22,7 +22,6 @@ import PrivateRoute from "./PrivateRoute";
 import AdminRoute from './AdminRoute';
 import UpdateProfile from "../Pages/Dashboard/UpdateProfile";
 import TestUpdate from "../Pages/Dashboard/TestUpdate";
-import BookNow from "../components/BookNow/BookNow";
 import MakeReport from "../Pages/Dashboard/MakeReport";
 import About from "../Pages/About/About";
 import Doctors from "../Pages/Doctors/Doctors";

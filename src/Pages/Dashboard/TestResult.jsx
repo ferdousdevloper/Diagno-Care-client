@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
 //import useAxiosSecure from "../../hooks/useAxiosSecure";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
+import { Helmet } from "react-helmet";
 
 const TestResult = () => {
   const { user } = useAuth();
@@ -25,6 +26,9 @@ const TestResult = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Diagno Care | Test Result</title>
+      </Helmet>
       <h1 className="text-6xl fontBebas font-extrabold text-center my-10">
         TEST RESULTS
       </h1>

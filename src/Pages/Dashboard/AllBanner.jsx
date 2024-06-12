@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import useBanner from "../../hooks/useBanner";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { Helmet } from "react-helmet";
 
 const AllBanner = () => {
   const [banner, loading, refetch] = useBanner()
@@ -44,6 +45,9 @@ const handleDeleteItem = (item) => {
 
   return (
     <div>
+      <Helmet>
+        <title>Diagno Care | All Banner</title>
+      </Helmet>
       <h1 className="text-6xl fontBebas font-extrabold text-center">
         ALL BANNER
       </h1>

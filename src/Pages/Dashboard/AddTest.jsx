@@ -4,6 +4,7 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import "react-datepicker/dist/react-datepicker.css";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 
 const image_hosting_key = import.meta.env.VITE_IMGBB_API_KEY;
@@ -54,6 +55,9 @@ const AddTest = () => {
   };
   return (
     <div>
+      <Helmet>
+        <title>Diagno Care | Add Test</title>
+      </Helmet>
       <h1 className="text-6xl fontBebas font-extrabold text-center">
         ADD TEST
       </h1>

@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import axios from "axios";
+import { Helmet } from "react-helmet";
 // import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 // const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
@@ -239,6 +240,9 @@ const SignUp = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Diagno Care | Sign Up</title>
+      </Helmet>
       <h1 className="text-5xl font-bold text-center pt-32 ">
         Register now!
       </h1>

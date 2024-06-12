@@ -7,6 +7,7 @@ import Loader from "../../components/Loader/Loader";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import { Navigate, useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 const UpdateProfile = () => {
   //const userInfo = useLoaderData()
@@ -575,6 +576,9 @@ const UpdateProfile = () => {
   ];
   return (
     <div>
+      <Helmet>
+        <title>Diagno Care | Update Profile</title>
+      </Helmet>
       <section className="">
         <div className="max-w-6xl px-6 py-10 mx-auto">
           <h1 className="mt-2 text-2xl font-semibold capitalize lg:text-3xl text-colorPrimary ">

@@ -26,12 +26,13 @@ import MakeReport from "../Pages/Dashboard/MakeReport";
 import About from "../Pages/About/About";
 import Doctors from "../Pages/Doctors/Doctors";
 import Contact from "../Pages/Contact/Contact";
+import Error404 from "../Pages/Error404/Error404";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout></MainLayout>,
-    errorElement: <h1>ERROR PAGE </h1>,
+    errorElement: <Error404></Error404>,
     children: [
       {
         path: "/",
